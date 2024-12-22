@@ -1,0 +1,47 @@
+name: Add Header and Footer to Markdown with Contributors
+
+on:
+  push:
+    paths:
+      - "**/*.md"  # .md 파일만 트리거
+
+jobs:
+  process-markdown:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Add header and footer with contributor info
+        run: |
+          for file in $(find . -name '*.md'); do
+            # 최초 생성자 가져오기
+            creator=$(git log --diff-filter=A --format='%an <%ae>' -- "$file" | head -n 1)
+            [ -z "$creator" ] && creator="Unknown Creator"
+
+            # 최근 커밋 작성자 가져오기
+            last_contributor=$(git log -1 --format='%an <%ae>' -- "$file")
+            [ -z "$last_contributor" ] && last_contributor="Unknown Contributor"
+
+            # 모든 기여자 가져오기
+            contributors=$(git log --format='%an <%ae>' -- "$file" | sort | uniq | tr '\n' ',' | sed 's/,$//')
+            [ -z "$contributors" ] && contributors="No Contributors"
+
+            # Header와 Footer 정의
+            date=$(date +"%Y-%m-%d %H:%M:%S")
+            header="# File Information\n\nCreated by: ${creator}\nLast updated by: ${last_contributor} on ${date}\n"
+            footer="\n\n---\n\nContributors: ${contributors}\n"
+
+            # 기존 콘텐츠 읽기 및 새로운 내용 쓰기
+            content=$(cat "$file")
+            echo -e "${header}${content}${footer}" > "$file"
+          done
+
+      - name: Commit changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Update Markdown with contributors"
+          git push
