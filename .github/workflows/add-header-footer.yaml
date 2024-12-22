@@ -33,7 +33,7 @@ jobs:
 
             # Header와 Footer 정의 (고유 태그 포함)
             date=$(date +"%Y-%m-%d %H:%M:%S")
-            header="<!-- BEGIN INFO -->\nCreated by: ${creator}\nLast updated by: ${last_contributor} on ${date}\n---\n<!-- END INFO -->"
+            header="<!-- BEGIN INFO -->\n\nCreated by: ${creator}\nLast updated by: ${last_contributor} on ${date}\n---\n<!-- END INFO -->"
             footer="\n<!-- BEGIN FOOTER -->\n---\n\nContributors: ${contributors}\n<!-- END FOOTER -->"
 
             # 기존 파일 내용 읽기
