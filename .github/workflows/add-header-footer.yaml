@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - "**/*.md"  # .md 파일만 트리거
+  
+permissions:
+  contents: write  # Actions에 저장소 쓰기 권한 부여
 
 jobs:
   process-markdown:
