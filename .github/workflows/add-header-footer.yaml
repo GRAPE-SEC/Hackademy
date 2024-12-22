@@ -31,14 +31,20 @@ jobs:
             contributors=$(git log --format='%an <%ae>' -- "$file" | sort | uniq | tr '\n' ',' | sed 's/,$//')
             [ -z "$contributors" ] && contributors="No Contributors"
 
-            # Header와 Footer 정의
+            # Header와 Footer 정의 (고유 태그 포함)
             date=$(date +"%Y-%m-%d %H:%M:%S")
-            header="### Info\n\nCreated by: ${creator}\nLast updated by: ${last_contributor} on ${date}\n"
-            footer="\n\n---\n\nContributors: ${contributors}\n"
+            header="<!-- BEGIN INFO -->\n### Info\n\nCreated by: ${creator}\nLast updated by: ${last_contributor} on ${date}\n<!-- END INFO -->"
+            footer="\n<!-- BEGIN FOOTER -->\n---\n\nContributors: ${contributors}\n<!-- END FOOTER -->"
 
-            # 기존 콘텐츠 읽기 및 새로운 내용 쓰기
+            # 기존 파일 내용 읽기
             content=$(cat "$file")
-            echo -e "${header}${content}${footer}" > "$file"
+
+            # 기존 Header와 Footer 제거 (고유 태그 기준)
+            content=$(echo "$content" | sed -E '/<!-- BEGIN INFO -->/,/<!-- END INFO -->/d')
+            content=$(echo "$content" | sed -E '/<!-- BEGIN FOOTER -->/,/<!-- END FOOTER -->/d')
+
+            # 새 Header와 Footer 추가
+            echo -e "${header}\n\n${content}${footer}" > "$file"
           done
 
       - name: Commit changes
