@@ -1,4 +1,4 @@
-# 1. 리눅스 : 계정, 권한
+![image](https://github.com/user-attachments/assets/00a8dfa9-c843-46c4-bfce-59609a9c4aac)# 1. 리눅스 : 계정, 권한
 ## 1.1. Sudo 설치와 사용
 
 ### 1.1.1. 리눅스 유저 설정
@@ -6,7 +6,8 @@
 그러니 이유는 나중에 설명하고, 실습을 통해 먼저 확인해보겠습니다.  
   
 docker container를 처음 실행하면 **root로 로그인** 됩니다.  
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/21baff1b-b0cd-4c84-939e-53b0141cf33a/Untitled.png)
+![image](https://github.com/user-attachments/assets/a86a9cb3-fd3c-4a63-b50e-83cacc811eeb)
+  
   
 만일 **su 명령어**를 이용해 root에서 다른 유저로 **switch user**했다면, **exit 명령어를 실행하면 다시 이전 유저로 돌아올** 수 있습니다.  
   
@@ -14,14 +15,16 @@ docker container를 처음 실행하면 **root로 로그인** 됩니다.
 ```bash
 adduser username
 ```
-(password 는 안 표시되는 것이 정상입니다.)  
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/3afc48d1-7ea5-49b2-8e75-02aadb4db468/Untitled.png)
+(password 는 표시되지 않는 것이 정상입니다.)  
+![image](https://github.com/user-attachments/assets/6c9d8a0f-099a-435e-b761-13f5d8348f15)
+  
   
 유저가 전부 생성되고 나면 해당 유저로 su해봅시다.
 - **su**는 switch user 의 약자로, 유저를 변경하는 명령어입니다.
 - **exit**은 su 로 변경했다가 다시 기존 유저로 돌아오는 명령어입니다.  
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/c60f52ab-8956-4347-991a-ea0331f231c2/Untitled.png)
-
+![image](https://github.com/user-attachments/assets/8f683fa2-f4c0-4d7b-8929-cc808d785fa6)
+  
+   
 ### 1.1.2. sudo 설치 및 사용
   
 - **sudo**
@@ -42,9 +45,10 @@ apt update
 apt install sudo
 ```
   
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/2713cf76-d074-443f-8e20-0ebe838b35af/Untitled.png)
+![image](https://github.com/user-attachments/assets/eb8bc685-0466-43c1-873d-807435ea1f1a)
+    
+![image](https://github.com/user-attachments/assets/b8d8f35d-b2c8-45b1-911e-944347c9b226)
   
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/d5714555-f3c2-4f62-a168-ac59dff5b1a3/Untitled.png)
   
 보통 apt install하기 전에는 apt update를 하므로,  
 두 개의 명령어를 한 줄로 실행하기 위한 명령어인 '**&&**'를 사용하여 둘을 연결합니다.  
@@ -61,7 +65,8 @@ root가 아닌 유저에게 sudo를 사용할 수 있는 권한을 부여하려�
 usermod -aG sudo username
 ```
   
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/899cc790-fc48-4763-88e1-f9b53f86053e/Untitled.png)
+![image](https://github.com/user-attachments/assets/18e8c8a1-5ef3-43ae-b411-4c58ac642eae)
+  
   
 ls 명령어는 user의 권한으로 실행되지만,  
 ```bash
@@ -78,8 +83,10 @@ whoami는 지금 누구로 로그인 되어있는지 출력하는 명령어입�
 sudo를 붙이면, root 라고 표시됩니다.
   
 아래의 이유에서 입니다.
-> 💡 sudo 는 root 가 아닌 계정으로, 한 줄의 명령어만 root 로 su 한 후 실행시키고, 다시 원래 계정으로 돌아오는 명령어입니다.  
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/f2f55f1e-9ff1-4225-b4dd-f9379b66113d/Untitled.png)
+> 💡 sudo 는 root 가 아닌 계정으로, 한 줄의 명령어만 root 로 su 한 후 실행시키고, 다시 원래 계정으로 돌아오는 명령어입니다.
+  
+![image](https://github.com/user-attachments/assets/c5baca10-e0e2-4c27-85a9-a1be7219c750)
+  
   
 이제 왜 그런지 자세히 설명해보겠습니다.  
   
@@ -102,8 +109,9 @@ whoami를 입력하면 root라고 표시됨을 알 수 있습니다.
 ```bash
 whoami
 ```
+  
+![image](https://github.com/user-attachments/assets/bb97e6e2-eee5-45b2-9c81-e5379a1a90bd)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/e69d83da-e04c-46f4-a42c-677f026b1bac/Untitled.png)
   
 이제 컴퓨터를 사용해보겠습니다.  
   
@@ -115,9 +123,9 @@ whoami
 ```bash
 echo hello
 ```
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/cf7a96f6-26bd-4a1f-ad41-237586ee1a6a/Untitled.png)
-
+  
+![image](https://github.com/user-attachments/assets/ae0cf63e-b000-4f5c-9e41-5269abdd8976)
+  
 그러면 리눅스가 똑같은 말을 앵무새처럼 화면에 출력합니다.  
     
 ### 1.2.3. root
@@ -142,8 +150,9 @@ passwd root
 또는
 passwd
 ```
+  
+![image](https://github.com/user-attachments/assets/aed0ac8d-77eb-4848-969a-38af5b0dcab4)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/322ffef0-578d-40ed-981b-846c2b9fcee7/Untitled.png)
   
 > 🔥 **패스워드가 입력이 안되는데요?**
 > 패스워드가 입력되지 않는 것처럼 보이지만, 실제로는 입력되고 있는 것 입니다.
@@ -179,7 +188,9 @@ adduser {{user name}}
 ```bash
 adduser superhacker
 ```
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/05d3f8bd-230a-4b4f-8fd8-6ae3d71c8c11/Untitled.png)
+  
+![image](https://github.com/user-attachments/assets/6ebe1b7c-3ea4-4a8a-86f7-70f848ba064a)
+
   
 패스워드를 입력하라고 하면, 패스워드를 입력하고 엔터를 칩니다.
 > 🔥 **패스워드가 입력이 안되는데요?**
@@ -226,8 +237,9 @@ su {{username}}
 root로 로그인된 상태에서 whoami를 입력하면 root 라고 나옵니다.  
 그리고 su superhacker 명령어를 입력하여 superhacker로 유저를 전환할 경우,  
 whoami를 입력 시 superhacker라고 나옵니다.  
+  
+![image](https://github.com/user-attachments/assets/cde9204e-6b7c-42db-a5e7-aa108c897d3b)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/316919cc-e3e5-4e35-a6c6-bd39bd2cba3a/Untitled.png)
   
 이제 root로 다시 바꿔봅시다.  
 
@@ -238,14 +250,15 @@ su root
 맨 처음에, passwd root로 root 계정의 패스워드를 설정했던 걸 기억해보세요.  
 그 비밀번호를 입력하면 root로 로그인할 수 있습니다.  
   
-패스워드가 틀린 경우, Authentication failure 라고 나옵니다.  
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/8a3f54bb-c2fa-4b71-887f-38e48e943a56/Untitled.png)
+패스워드가 틀린 경우, Authentication failure라고 나옵니다.  
+  
+![image](https://github.com/user-attachments/assets/13001cf5-d94c-48a0-8446-9cbd50a04c8d)
   
 패스워드가 맞으면, root로 전환됩니다.  
 whoami 를 입력해보니 root 라고 나오네요.  
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/5eb47674-97e0-41c8-8c01-94f58fd5e5cb/Untitled.png)
+![image](https://github.com/user-attachments/assets/d80fcf05-c84b-4d33-9aba-94ab76dc07f7)
+
 
   
 #### 4) 기존유저로 돌아가기 : exit
@@ -260,9 +273,10 @@ exit
   
 root인 상태에서 superhacker로 su 하고, exit 하면 다시 root로 돌아옵니다.  
 아래 명령어를 순서대로 입력해보면 확인할 수 있습니다.  
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/cca2cec7-1bcb-4fa3-b744-2c10a94b1a8b/Untitled.png)
-
+  
+![image](https://github.com/user-attachments/assets/fa6a1f6e-2223-4578-9181-94e4102ee06d)
+  
+  
   
 ### 1.2.6. 현재 컴퓨터에 있는 모든 계정 확인 : cat /etc/passwd
 이제 adduser 로 유저를 계속 추가해서 사용할 수 있습니다.  
@@ -291,10 +305,11 @@ daemon, bin, sys, sync … 이상한 문자들이 출력됩니다.
 그리고 맨 아래에 보면 아까 adduser로 생성한 superhacker 계정이 보입니다.  
 **사람이 사용하는 계정에는 /bin/bash**라는 것이 적혀 있습니다.  
 그것으로 사람이 사용하는 계정과 리눅스 시스템 계정을 구분할 수 있습니다.  
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/72cd2ed5-ff81-49c5-af3b-34f8a162780b/Untitled.png)
-
   
+![image](https://github.com/user-attachments/assets/f45e5e06-3b76-4369-b653-a58898d3df3e)
+  
+  
+    
 ### 1.2.7. userdel
 **생성한 유저를 삭제**하려면 userdel 명령어를 사용합니다.  
 **user delete**의 약자입니다.  
@@ -406,11 +421,13 @@ usermod -aG sudo superhacker
 _“superhacker라는 계정을 sudoers가 아닙니다. 이 시도는 기록됩니다.”_  
 ※ 기록을 하는 이유는 해킹 시도가 있었을때 root가 알 수 있도록 하는 기능입니다.  
   
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/1f659d12-2598-44fe-a44d-3bd1be13a54d/Untitled.png)
-  
+![image](https://github.com/user-attachments/assets/3f230df2-99e6-4e40-bfc1-6863019b2908)
+
+    
 이제 root로 로그인 된 상태에서 usermod -aG sudo superhacker를 사용하여 sudoers에 추가하면, sudo echo hello를 superhacker 의 비밀번호로 사용할 수 있게 됩니다.  
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/96f6cfd1-756b-4a1f-b159-2b11951abce1/Untitled.png)
+![image](https://github.com/user-attachments/assets/56d3a222-11d3-4b7d-a813-642f95be8459)
+  
   
   
 #### 2) sudo 그룹에서 삭제하기 : deluser
@@ -427,8 +444,9 @@ deluser {{username}} sudo
 ```
   
 아래와 같이 명령어를 수행하고 나면 더 이상 sudo를 이용할 수 없습니다.  
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6617195d-3c86-450f-920c-3551e4bc12a3/df7ca1cc-e854-4d26-a87d-496bdaead8de/Untitled.png)
+  
+![image](https://github.com/user-attachments/assets/cff0c9bf-b865-4d7e-b149-9c8f81699022)
+  
   
 sudo는 **프로그램을 설치**하거나, **설정파일을 수정**할 때 필요합니다.  
   
@@ -457,6 +475,89 @@ root 권한을 쉽게 관리하게 만들면서도,
     
 ## 1.3. 실행권한과 소유 ugo / chmod
 
+### 1.3.1. 실행 권한
+linux에는 한 서버에 많은 인원이 들어갈 수 있습니다.  
+이는 때론 매우 유용하지만, 때론 큰 문제를 일으킬 수도 있습니다.  
+한 사람이 다른 사람의 파일을 임의로 바꾸거나 삭제할 수 있다는 것이죠.  
+  
+이를 해결하기 위해 linux에는 **실행권한**이라는 것이 주어집니다.  
+이를 통해 **본인, 그룹, 모든 유저**로 나누어 **read, write, delete 할 권한을 따로 부여**할 수 있습니다.  
+- read : 파일을 읽는 것을 말합니다. 이 권한이 있으면 파일을 읽을 수 있습니다.
+- write : 파일을 쓰는 것을 말합니다. 원래있던 파일을 편집하거나, 새로운 파일을 생성하는 것을 말합니다.
+- delete : 존재하는 파일을 삭제하는 것을 말합니다.
+  
+먼저 한 파일의 실행권한을 확인해보도록 합시다.  
+
+```bash
+ls -la
+```
+
+![image](https://github.com/user-attachments/assets/fc8a9f59-f597-440b-a6c9-e1c3383ee978)
+  
+여기서 실행권한을 의미하는 것은 맨 왼쪽, 10개의 문자 부분입니다.  
+  
+이를 차례대로 보도록 하죠.  
+![image](https://github.com/user-attachments/assets/03a78771-7add-41bc-9dc2-59396724c75c)
+  
+먼저 첫 글자 d 입니다.  
+이는 파일의 종류를 의미합니다.  
+  
+이후부터는 3글자씩 나누어서 보도록 합시다.  
+차례대로 user, group, others 를 의미합니다.  
+
+| user | u | 소유 유저 |
+| --- | --- | --- |
+| group | g | 그룹  |
+| others | o | 모든 유저 |
+  
+더욱 세분화하여 rwx의 각각의 의미를 보도록 하겠습니다.  
+
+|  read | r |
+| --- | --- |
+| write | w |
+| execute | x |
+  
+위는 권한을 의미하며 -의 경우 그 권한이 없다는 의미입니다.  
+  
+  
+  
+### 1.3.2. chmod 와 sudo
+chmod로 파일을 변경하는 것은 시스템에서 아주 중요한 역할을 수행합니다.  
+누군가가 악성코드나 시스템을 지우는 파일을 저장하고 실행권한을 부여할 수 있으면 해당파일을 실행할 수 있게 되어서 아주 위험합니다.  
+  
+**따라서 리눅스에서 chmod 명령어는 root 권한으로만 실행 가능합니다.**  
+  
+root로 로그인된 상태에서 사용하거나, sudo를 설치해서 root 권한으로 수행해야 합니다.  
+  
+#### 1) chmod
+이제 이 권한을 바꿔보도록 하겠습니다.  
+  
+먼저 r,w,x간의 binary number 값을 보겠습니다.  
+
+|  read | r | 4 |
+| --- | --- | --- |
+| write | w | 2 |
+| execute | x | 1 |
+  
+여기서 허용하고 싶은 권한에 대해서는 그 수를 더하고 아닌 경우 그대로 놔두면 됩니다.  
+예를 들어 모든 user, group, others가 read only로 만들고 싶은 경우 4인 것이죠.  
+
+```bash
+chmod 444 [filename]
+```
+  
+이는 문자를 통해서도 변경할 수 있습니다.  
+  
+이 경우 user가 r,w,x의 권한을 가지도록 해보죠. 
+
+```bash
+chmod u+rwx [filename]
+```
+
+이 경우 -는 권한을 없애는 것이고, +는 권한을 부여하는 것입니다.  
+  
+계속  
+  
 # 2. 프로세스
 ## 2.1. ps / kill
 
