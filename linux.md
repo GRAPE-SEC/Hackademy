@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/00a8dfa9-c843-46c4-bfce-59609a9c4aac)# 1. 리눅스 : 계정, 권한
+# 1. 리눅스 : 계정, 권한
 ## 1.1. Sudo 설치와 사용
 
 ### 1.1.1. 리눅스 유저 설정
@@ -559,10 +559,166 @@ chmod u+rwx [filename]
 계속  
   
 # 2. 프로세스
-## 2.1. ps / kill
+## 2.1. 프로세스란?
+명령어나 프로그램이 실행되어있는 상태를 프로세르라 합니다.  
+  
+### 2.1.1. 프로세스 끄기 : Ctrl + c
+- GUI 환경에서 프로세스를 끌려면 걍 X 를 누르면 됩니다.
+    
+- 리눅스 CUI 터미널에는 X 버튼 같은게 없으니 아래를 입력해서 종료합니다.
+  ```php
+  ctrl + c
+  ```
+  - c 는 cancel(취소) 의 약자입니다. 왠지 Windows 의 복사 단축키와 겹칩니다. (copy 라서)
+  - 참고로 리눅스에서 복사는 이것입니다.
+    ```php
+    ctrl + shift + c
+    ```
+  
+### 2.1.2. 백그라운드에 있는 프로세스 끄기
+어떤 프로세스들은 뒤에서 몰래 실행됩니다. (예를 들어 웹서버)  
+이런 프로그램은 Ctrl + c 로 끌 수가 없습니다. (나랑 대화 중인 프로세스만 끌 수 있다)  
+  
+이런 프로세스들은 **PID**(프로세스 아이디라는 뜻)을 찾아서 꺼야합니다.  
+  
+**ps**는 **실행 중인 프로세스들과 PID를 출력**합니다.  
+ps로 끄고 싶은 프로세스의 PID를 찾은 후 **kill로 종료**시키면 됩니다.  
+  
+```php
+ps -aux | grep {process_name}
+kill -9 {PID}
+```
+  
+  
+## 2.2. ps / kill
+### 2.2.1. ps
+ps는 process의 약자로, 프로세스를 관리하는 명령어입니다.  
+Windows의 작업관리자처럼 **프로세스를 종료하거나 확인하는 데**에 쓰입니다.  
+  
+아시다시피, 컴퓨터는 OS와 OS에서 실행시킨 프로세스로 작동합니다.  
+
+![image](https://github.com/user-attachments/assets/8ae2ad35-4817-4fd1-9ffd-3d066ee0ddc6)
+  
+이것은 리눅스에서도 마찬가지 입니다.  
+
+![image](https://github.com/user-attachments/assets/0550b37f-7671-4786-84a9-5044e7d1e18b)
+  
+리눅스는 **프로세스를 번호로 구분**합니다.  
+이 번호를 프로세스 아이디, **PID**라고 부릅니다.  
+  
+  
+프로세스의 목록, 현재 상태를 출력하겠습니다.  
+
+```bash
+ps [option]
+```
+  
+| 옵션 | 설명 |
+| --- | --- |
+| -e | 모든 프로세스 정보 출력 |
+| -f | 프로세스의 다양한 정보 출력 |
+| -a | 실행중인 전체 사용자의 모든 프로세스 출력 |
+| -u | 프로세스를 실행한 사용자 정보와 프로세스 시작 시간 출력 |
+| -x | 제어 터미널을 갖지 않는 프로세스 출력  |
+
+- PID 확인
+  ```bash
+  ps -ef
+  ```
+  ![image](https://github.com/user-attachments/assets/15a6467f-5a66-4220-8215-03a0070375ba)
+  
+  
+### 2.2.2. kill
+현재 작동하는 프로세스를 종료시킬 때 사용하는 명령어입니다.  
+대괄호 없이 숫자만 입력합니다.  
+
+```bash
+kill [option] [PID]
+```
+  
+| 옵션 | 설명 |
+| --- | --- |
+| -1 | 재실행 |
+| -9 | 강제 종료 |
+| -15 | 기다렸다가 정상 종료 (default)  |
+
+- 프로세스 강제 종료
+  대괄호 없이 숫자만 입력합니다.
+  
+  ```bash
+  kill -9 [PID]
+  ```
+
+계속
 
 # 3. 환경변수
 ## 3.1. 환경변수란
+환경변수란 운영체제의 여러 설정을 저장하고 있는 변수입니다.  
+  
+### 3.1.1. PATH
+PATH라는 환경변수는 쉘에서 명령어를 실행했을때, 그게 **어떤 실행파일을 실행할지 경로를 지정하는 환경변수**입니다.  
+예를 들어, python을 설치하고 python이라는 명령어를 터미널에 입력하면 자동으로 python이 실행됩니다.  
 
+![image](https://github.com/user-attachments/assets/c8c82311-53db-4fa7-a61c-27d54b0cf26e)
+  
+그것은 쉘이 python이라는 명령어를 실행했을때, python.exe가 어디있는지 기억하고 있기 때문입니다.  
+아래를 보면 PATH라는 환경변수에 Python이 어디에 설치되어있는지 저장되어있습니다.  
+
+![image](https://github.com/user-attachments/assets/9ab44d8b-f44b-4c16-a68d-649afe4e1938)  
+해당 경로로 가보면 실제로 python 의 실행파일이 저장되어있는 것을 확인할 수 있습니다.
+  
+![image](https://github.com/user-attachments/assets/a0c39c2c-9eda-4f2d-a9ae-96d84f32162d)  
+  
+환경변수를 확인하는 방법은 운영체제마다 다릅니다.  
+구글에 검색하면 나옵니다.  
+그러나 환경변수가 작동하는 방식은 모든 운영체제에서 동일합니다.  
+  
+  
+### 3.1.2. 환경변수를 인간이 설정해야하는 경우
+보통 수동으로 환경변수를 바꿔야하는 경우는 잘 없지만, 종종 발생합니다.  
+Python을 설치할때, Add Python 3.7 to PATH 를 체크하면 Python 설치 프로그램이 자동으로 PATH에 Python을 추가합니다.  
+  
+![image](https://github.com/user-attachments/assets/fc5dc6a7-b686-4cc6-9c66-efe6acdd68f3)
+  
+그러나 만약 예를 들어, Python 3.11 버전과 Python 2.7 버전 두 개를 설치하면,   
+쉘에 python 명령어를 실행했을 때 어떤 python을 실행해야하는지 컴퓨터가 알지 못합니다.  
+  
+주로, Python 2.7을 설치할 때 Add Python 2.7을 체크하고, Python 3.11 을 설치할 때 체크를 안하면 체크한 녀석을 기준으로 PATH가 설정되니, 터미널로 Python 3.11 을 실행할 수 없게 됩니다.  
+  
+vscode도 PATH를 읽어서 python을 integrated Terminal에서 실행하므로, vscode도 python 2.7로 코드를 실행합니다.  
+(코딩 실습실에서 자주 일어나는 문제인데, 사실 내막은 거의 이렇습니다.)  
+  
+_우리는 해커이니, 이런 문제를 스스로 잘 해결하도록 합시다._  
+  
+또한 환경변수를 수동으로 편집하면, 본인만의 터미널 명령어를 설정할 수도 있습니다.  
+PATH에 추가하고 그 곳에 직접 만든 프로그램을 위치시키면 됩니다.  
+  
+  
+## 3.2. 각 운영체제 별 환경변수 설정법
+
+### 3.2.1. Windows
+
+![image](https://github.com/user-attachments/assets/b6fce7f6-4b33-4d7b-aed1-06206b43cab9)
+  
+![image](https://github.com/user-attachments/assets/aa2f0bb1-51a9-4cee-9c8c-c4bb9789b316)
+  
+  
+### 3.2.2. MacOS
+애플의 맥OS 의 환경변수를 설정하는 방법은 아래와 같습니다.  
+[[번역] PATH (MacOS) : Mac OS에서 PATH 환경 변수 모범 사례](https://lovejaco.github.io/posts/path-macos-best-practice-for-path-environment-variables-on-mac-os/)
+  
+  
+### 3.2.3. Linux
+리눅스에서는 아래 명령어로 환경변수 확인이 가능합니다.  
+
+```bash
+env
+```
+  
+리눅스는 **모든 명령어 즉 실행파일이 /bin 안**에 있으니, 해당 경로가 PATH에 저장되어있는 것을 확인할 수 있습니다.
+![image](https://github.com/user-attachments/assets/6cde8edd-4d0c-471b-9a6a-f22f8a7209c0)
+  
+계속
+  
 # 4. 쉘스크립트
 # 4.1. 쉘스크립트 : sh 파일로 명령어 여러개 자동으로 실행하기
