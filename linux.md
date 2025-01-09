@@ -721,4 +721,83 @@ env
 계속
   
 # 4. 쉘스크립트
-# 4.1. 쉘스크립트 : sh 파일로 명령어 여러개 자동으로 실행하기
+## 4.1. 쉘스크립트 : sh 파일로 명령어 여러 개 자동으로 실행하기
+매번 손으로 명령어를 여러 번 입력하기란 여간 힘든 일이 아닙니다.  
+리눅스는 여러 개의 명령어를 미리 파일로 저장해두고, 해당 파일을 실행하여 여러 명령어를 자동으로 한 번에 실행할 수 있게 합니다.  
+  
+이러한 기능을 **쉘 스크립트**(**Shell Script**)라고 부릅니다.  
+  
+MacOS에서는 동일하게 Shell Script라고 부르고, Windows에서는 배치 스크립트(Batch) 배치파일이라고 부릅니다.  
+![image](https://github.com/user-attachments/assets/0e23e5e8-5702-4192-8a0e-ff03d72b5a0f)  
+![image](https://github.com/user-attachments/assets/e2fe101a-6303-4e78-ac02-562eb9bda584)  
+
+### 4.1.1. 리눅스 쉘 스크립트 실습
+쉘 스크립트를 직접 만들고 써봅시다.  
+쉘 스크립트파일은 .sh 로 끝납니다.  
+  
+[test.sh](http://test.sh)라는 파일을 만들고, 안에 이렇게 적습니다.  
+_whoami 를 두번 실행하고, hello linux를 출력한다._  
+
+![image](https://github.com/user-attachments/assets/bfa620ec-2055-4660-b109-033fd03e9900)  
+  
+쉘 스크립트 파일을 실행하려면 해당 파일에 실행 권한이 있어야 합니다.  
+_(그렇지 않으면 아무 파일이나 실행시킬 수 있게 되어, 악성코드에 취약해지니까요)_  
+  
+실행권한을 부여하는 명령어는 아래와 같습니다.  
+※ chmod 명령어를 사용하려면 root이거나, sudo를 사용해야합니다.  
+root 라면 sudo 를 붙이지 않아도 됩니다.  
+
+```bash
+# x (execute의 약자) 권한을 부여
+sudo chmod +x test.sh 
+```
+  
+![image](https://github.com/user-attachments/assets/7485b060-2437-4544-ad53-a49f81d47e81)  
+
+  
+이렇게 출력되면 성공입니다.  
+  
+이러한 쉘 스크립트는 프로그램 설치나 유저 생성 등 귀찮은 일을 한번에 할 수 있게 해줍니다.  
+  
+  
+### 4.1.2. 쉘스크립트에 인자(argument) 넣기
+쉘 스크립트에는 변수를 삽입할 수 있습니다.  
+쉘 스크립트를 실행할 때마다 다른 값을 넣어서 실행할 수 있다는 뜻이죠.  
+  
+[test.sh](http://test.sh) 파일에 다음과 같이 적습니다.  
+
+```bash
+echo "첫번째 argument : $1"
+echo "두번째 argument : $2"
+
+whoami
+
+echo "실행 끝냅니다"
+```
+  
+이제 실행시킬때, ./test.sh 뒤에 문자나 숫자를 차례로 입력하면 $1과 $2가 해당 값으로 바뀌어 실행됩니다.  
+
+![image](https://github.com/user-attachments/assets/d5a9915c-495f-4c18-9d17-96fd501be271)
+  
+  
+## 4.2. 쉘 스크립트를 어따 쓰는가
+쉘 스크립트를 이용하면 프로그램을 여러 개 설치하는 것과 같이 귀찮은 업무를 한 번에 자동으로 수행할 수 있습니다.  
+예를 들면 쉘 스크립트를 실행하여 vim과 python3를 자동으로 설치한 다음 프로그램 설치가 완료되었다는 메세지를 출력합니다.  
+  
+```bash
+echo "꼭 필요한 프로그램들을 설치합니다..."
+
+apt install -y vim
+
+apt install -y python3
+
+echo "프로그램 설치가 완료되었습니다..."
+```
+  
+```bash
+sudo ./test.sh
+```
+  
+![image](https://github.com/user-attachments/assets/71304d92-3bd4-4d0a-9010-bc67949a46a1)  
+  
+계속
